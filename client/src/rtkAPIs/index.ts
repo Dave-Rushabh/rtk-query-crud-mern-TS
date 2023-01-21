@@ -1,15 +1,15 @@
-import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
+import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react'
 
 export const testAPI = createApi({
-  reducerPath: "testAPI",
+  reducerPath: 'testAPI',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/todos",
+    baseUrl: 'http://localhost:7000/api/user',
   }),
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getTodos: builder.query({
-      query: (limit) => `?_limit=${limit}`,
+      query: () => '', //limit => `?limit=${limit}`,
     }),
   }),
-});
+})
 
-export const { useGetTodosQuery } = testAPI;
+export const { useGetTodosQuery } = testAPI

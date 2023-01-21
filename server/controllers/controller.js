@@ -1,37 +1,37 @@
-import expressAsyncHandler from "express-async-handler";
-import { User } from "../models/model.js";
+import expressAsyncHandler from 'express-async-handler'
+import { User } from '../models/model.js'
 
 // using post method to initially enter few entries into MongoDB
 const addUser = expressAsyncHandler(async (req, res) => {
   const data = {
-    fname: "Hiren",
-    lname: "Vara",
-  };
+    fname: 'Hiren',
+    lname: 'Vara',
+  }
 
   try {
-    const isDataAddedToDB = await User.create(data);
+    const isDataAddedToDB = await User.create(data)
 
     if (isDataAddedToDB) {
-      res.json(data);
+      res.json(data)
     }
   } catch (error) {
-    res.status(400);
-    throw new Error(error);
+    res.status(400)
+    throw new Error(error)
   }
-});
+})
 
 // get the users from DB
 const getUsers = expressAsyncHandler(async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).limit(req.query.limit)
 
     if (users) {
-      res.json(users);
+      res.json(users)
     }
   } catch (error) {
-    res.status(400);
-    throw new Error(error);
+    res.status(400)
+    throw new Error(error)
   }
-});
+})
 
-export { addUser, getUsers };
+export { addUser, getUsers }
