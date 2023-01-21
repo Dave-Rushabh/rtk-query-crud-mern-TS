@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./db/config.js";
+import { router } from "./routes/route.js";
 
 // create express HTTP server with Node Js
 const app = express();
@@ -20,6 +21,9 @@ const PORT = process.env.PORT_NUMBER;
 
 // Connect the express server with MONGODB
 connectDB();
+
+// listen to the routes
+app.use("/api", router);
 
 // listeing to the server on the given path
 app.listen(PORT || 5000, () => {
