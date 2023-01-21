@@ -9,21 +9,21 @@ import { setTotalAvailable } from '../../reducers/PaginationSlice'
 import Pagination from '../Pagination'
 
 const Index = () => {
-  const { isLoading, isSuccess, data } = useGetUsersQuery(2)
   const dispatch = useDispatch()
-
   const {
     page: currentPage,
     limit: paginationLimit,
     totalAvailable,
   } = useSelector((state: any) => state.pagination)
 
+  const { isLoading, isSuccess, data } = useGetUsersQuery(paginationLimit)
+
   useEffect(() => {
     if (isSuccess) {
       dispatch(handleToasterVisibility(true))
       dispatch(setTotalAvailable(data.totalAvailable))
     }
-  }, [isSuccess, dispatch, data])
+  }, [isSuccess, dispatch, data, paginationLimit])
 
   return (
     <>
