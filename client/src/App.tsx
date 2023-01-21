@@ -1,8 +1,14 @@
-import React from "react";
-import TestComponent from "./components/TestComponent";
+import React from 'react'
+import TestComponent from './components/Main'
+import Pagination from './components/Pagination'
 
 function App() {
-  return <TestComponent />;
+  return (
+    <>
+      <TestComponent />
+      <Pagination />
+    </>
+  )
 }
 
-export default App;
+export default App

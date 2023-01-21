@@ -24,9 +24,15 @@ const addUser = expressAsyncHandler(async (req, res) => {
 const getUsers = expressAsyncHandler(async (req, res) => {
   try {
     const users = await User.find({}).limit(req.query.limit)
+    const totalAvailable = await User.find({}).count()
 
-    if (users) {
-      res.json(users)
+    const resp = {
+      users,
+      totalAvailable,
+    }
+
+    if (users && totalAvailable) {
+      res.json(resp)
     }
   } catch (error) {
     res.status(400)

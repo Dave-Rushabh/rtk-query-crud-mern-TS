@@ -3,18 +3,20 @@ import { useGetTodosQuery } from '../../rtkAPIs'
 import { useDispatch } from 'react-redux'
 import { handleToasterVisibility } from '../../reducers/ToasterSlice'
 import { CircularProgress, Box } from '@mui/material'
-import CustomizedToaster from '../../components/toaster'
+import CustomizedToaster from '../toaster'
 import { TOASTER_PARAMS } from '../../constants'
+import { setTotalAvailable } from '../../reducers/PaginationSlice'
 
 const Index = () => {
-  const { isLoading, isSuccess } = useGetTodosQuery(2)
+  const { isLoading, isSuccess, data } = useGetTodosQuery(2)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(handleToasterVisibility(true))
+      dispatch(setTotalAvailable(data.totalAvailable))
     }
-  }, [isSuccess, dispatch])
+  }, [isSuccess, dispatch, data])
 
   return (
     <>

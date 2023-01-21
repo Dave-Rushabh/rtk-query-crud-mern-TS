@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 //prepare schema for a model
 const userModel = new Schema({
@@ -10,9 +10,9 @@ const userModel = new Schema({
   lname: {
     type: String,
   },
-});
+})
 
 // initialize the above model with mongoose
-const User = mongoose.model("user", userModel);
+const User = mongoose.model('user', userModel)
 
-export { User };
+export { User }

@@ -7,7 +7,7 @@ export const testAPI = createApi({
   }),
   endpoints: builder => ({
     getTodos: builder.query({
-      query: () => '', //limit => `?limit=${limit}`,
+      query: limit => `?limit=${limit}`,
     }),
   }),
 })

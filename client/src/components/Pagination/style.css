@@ -1,0 +1,12 @@
+.pagination-wrapper {
+  width: 80%;
+  display: flex;
+  padding: 16px;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+  height: fit-content;
+  margin-top: 24px !important;
+  border-radius: 15px;
+}
