@@ -1,17 +1,17 @@
 import { FormControl, InputLabel, MenuItem, Select, Box } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setPageLimit } from '../../reducers/PaginationSlice'
 
 import './style.css'
 
-const Index = () => {
-  const dispatch = useDispatch()
+type Props = {
+  currentPage: number
+  paginationLimit: number
+  totalAvailable: number
+}
 
-  const {
-    page: currentPage,
-    limit: paginationLimit,
-    totalAvailable,
-  } = useSelector((state: any) => state.pagination)
+const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
+  const dispatch = useDispatch()
 
   const pageNumber = Math.ceil(totalAvailable / paginationLimit)
 

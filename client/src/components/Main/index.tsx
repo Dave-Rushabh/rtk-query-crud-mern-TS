@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react'
-import { useGetTodosQuery } from '../../rtkAPIs'
-import { useDispatch } from 'react-redux'
+import { useGetUsersQuery } from '../../rtkAPIs'
+import { useDispatch, useSelector } from 'react-redux'
 import { handleToasterVisibility } from '../../reducers/ToasterSlice'
 import { CircularProgress, Box } from '@mui/material'
 import CustomizedToaster from '../toaster'
 import { TOASTER_PARAMS } from '../../constants'
 import { setTotalAvailable } from '../../reducers/PaginationSlice'
+import Pagination from '../Pagination'
 
 const Index = () => {
-  const { isLoading, isSuccess, data } = useGetTodosQuery(2)
+  const { isLoading, isSuccess, data } = useGetUsersQuery(2)
   const dispatch = useDispatch()
+
+  const {
+    page: currentPage,
+    limit: paginationLimit,
+    totalAvailable,
+  } = useSelector((state: any) => state.pagination)
 
   useEffect(() => {
     if (isSuccess) {
@@ -35,6 +42,9 @@ const Index = () => {
         toasterText='Data Fetching Successful'
         severity={TOASTER_PARAMS.SEVERITY.SUCCESS}
       />
+      {data ? (
+        <Pagination {...{ currentPage, paginationLimit, totalAvailable }} />
+      ) : null}
     </>
   )
 }

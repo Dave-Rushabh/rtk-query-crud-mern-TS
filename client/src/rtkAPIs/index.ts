@@ -6,10 +6,10 @@ export const testAPI = createApi({
     baseUrl: 'http://localhost:7000/api/user',
   }),
   endpoints: builder => ({
-    getTodos: builder.query({
+    getUsers: builder.query({
       query: limit => `?limit=${limit}`,
     }),
   }),
 })
 
-export const { useGetTodosQuery } = testAPI
+export const { useGetUsersQuery } = testAPI
