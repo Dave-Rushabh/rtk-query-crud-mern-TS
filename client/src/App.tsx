@@ -1,11 +1,10 @@
-import React from 'react'
-import TestComponent from './components/Main'
+import Main from './components/Main'
 import Pagination from './components/Pagination'
 
 function App() {
   return (
     <>
-      <TestComponent />
+      <Main />
       <Pagination />
     </>
   )
