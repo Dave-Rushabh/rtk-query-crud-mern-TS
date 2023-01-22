@@ -1,19 +1,19 @@
-import { FormControl, InputLabel, MenuItem, Select, Box } from '@mui/material'
-import { useDispatch } from 'react-redux'
-import { setPageLimit } from '../../reducers/PaginationSlice'
+import { FormControl, InputLabel, MenuItem, Select, Box } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setPageLimit } from '../../reducers/PaginationSlice';
 
-import './style.css'
+import './style.css';
 
 type Props = {
-  currentPage: number
-  paginationLimit: number
-  totalAvailable: number
-}
+  currentPage: number;
+  paginationLimit: number;
+  totalAvailable: number;
+};
 
 const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const pageNumber = Math.ceil(totalAvailable / paginationLimit)
+  const pageNumber = Math.ceil(totalAvailable / paginationLimit);
 
   const selectJSX = () => {
     return (
@@ -25,7 +25,7 @@ const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
             defaultValue={paginationLimit}
             label='Rows / Page'
             onChange={e => {
-              dispatch(setPageLimit(e.target.value))
+              dispatch(setPageLimit(e.target.value));
             }}
           >
             <MenuItem value={2}>2</MenuItem>
@@ -34,8 +34,8 @@ const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
           </Select>
         </FormControl>
       </Box>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -44,7 +44,7 @@ const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
         <div>{`Page ${currentPage} of total ${pageNumber}`}</div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
