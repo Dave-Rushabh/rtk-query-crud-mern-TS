@@ -7,6 +7,7 @@ import CustomizedToaster from '../toaster'
 import { TOASTER_PARAMS } from '../../constants'
 import { setTotalAvailable } from '../../reducers/PaginationSlice'
 import Pagination from '../Pagination'
+import TableComponent from '../TableComponent'
 
 const Index = () => {
   const dispatch = useDispatch()
@@ -16,18 +17,19 @@ const Index = () => {
     totalAvailable,
   } = useSelector((state: any) => state.pagination)
 
-  const { isLoading, isSuccess, data } = useGetUsersQuery(paginationLimit)
+  const { isLoading, isSuccess, data, isFetching } =
+    useGetUsersQuery(paginationLimit)
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(handleToasterVisibility(true))
       dispatch(setTotalAvailable(data.totalAvailable))
     }
-  }, [isSuccess, dispatch, data, paginationLimit])
+  }, [isSuccess, dispatch, data])
 
   return (
     <>
-      {isLoading && (
+      {(isLoading || isFetching) && (
         <Box
           sx={{
             display: 'flex',
@@ -43,7 +45,10 @@ const Index = () => {
         severity={TOASTER_PARAMS.SEVERITY.SUCCESS}
       />
       {data ? (
-        <Pagination {...{ currentPage, paginationLimit, totalAvailable }} />
+        <>
+          <TableComponent data={data.users} />
+          <Pagination {...{ currentPage, paginationLimit, totalAvailable }} />
+        </>
       ) : null}
     </>
   )
