@@ -1,31 +1,33 @@
-import React, { useEffect } from 'react'
-import { useGetUsersQuery } from '../../rtkAPIs'
-import { useDispatch, useSelector } from 'react-redux'
-import { handleToasterVisibility } from '../../reducers/ToasterSlice'
-import { CircularProgress, Box } from '@mui/material'
-import CustomizedToaster from '../toaster'
-import { TOASTER_PARAMS } from '../../constants'
-import { setTotalAvailable } from '../../reducers/PaginationSlice'
-import Pagination from '../Pagination'
-import TableComponent from '../TableComponent'
+import React, { useEffect } from 'react';
+import { useGetUsersQuery } from '../../rtkAPIs';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleToasterVisibility } from '../../reducers/ToasterSlice';
+import { CircularProgress, Box } from '@mui/material';
+import CustomizedToaster from '../toaster';
+import { TOASTER_PARAMS } from '../../constants';
+import { setTotalAvailable } from '../../reducers/PaginationSlice';
+import Pagination from '../Pagination';
+import TableComponent from '../TableComponent';
 
 const Index = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     page: currentPage,
     limit: paginationLimit,
     totalAvailable,
-  } = useSelector((state: any) => state.pagination)
+  } = useSelector((state: any) => state.pagination);
 
-  const { isLoading, isSuccess, data, isFetching } =
-    useGetUsersQuery(paginationLimit)
+  const { isLoading, isSuccess, data, isFetching } = useGetUsersQuery({
+    page: currentPage,
+    limit: paginationLimit,
+  });
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(handleToasterVisibility(true))
-      dispatch(setTotalAvailable(data.totalAvailable))
+      dispatch(handleToasterVisibility(true));
+      dispatch(setTotalAvailable(data.totalAvailable));
     }
-  }, [isSuccess, dispatch, data])
+  }, [isSuccess, dispatch, data, currentPage]);
 
   return (
     <>
@@ -51,7 +53,7 @@ const Index = () => {
         </>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

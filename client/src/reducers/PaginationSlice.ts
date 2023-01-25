@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const PaginationSlice = createSlice({
   name: 'Pagination',
@@ -9,14 +9,19 @@ const PaginationSlice = createSlice({
   },
   reducers: {
     setPageLimit: (state, action) => {
-      state.limit = action.payload
+      state.limit = action.payload;
     },
     setTotalAvailable: (state, action) => {
-      state.totalAvailable = action.payload
+      state.totalAvailable = action.payload;
+    },
+    handlePageChange: (state, action) => {
+      console.log(action.payload, 'page');
+      state.page = action.payload;
     },
   },
-})
+});
 
-export default PaginationSlice.reducer
+export default PaginationSlice.reducer;
 
-export const { setPageLimit, setTotalAvailable } = PaginationSlice.actions
+export const { setPageLimit, setTotalAvailable, handlePageChange } =
+  PaginationSlice.actions;

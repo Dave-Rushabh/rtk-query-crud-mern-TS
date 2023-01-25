@@ -1,4 +1,4 @@
-import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react'
+import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 
 export const testAPI = createApi({
   reducerPath: 'testAPI',
@@ -7,9 +7,14 @@ export const testAPI = createApi({
   }),
   endpoints: builder => ({
     getUsers: builder.query({
-      query: limit => `?limit=${limit}`,
+      query: args => {
+        const { limit, page } = args;
+        return {
+          url: `?page=${page}&limit=${limit}`,
+        };
+      },
     }),
   }),
-})
+});
 
-export const { useGetUsersQuery } = testAPI
+export const { useGetUsersQuery } = testAPI;
