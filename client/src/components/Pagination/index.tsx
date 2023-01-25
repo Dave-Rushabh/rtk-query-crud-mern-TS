@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setPageLimit } from '../../reducers/PaginationSlice';
+import PaginationPanel from '../PaginationPanel';
 
 import './style.css';
 
@@ -41,7 +42,16 @@ const Index = ({ currentPage, paginationLimit, totalAvailable }: Props) => {
     <>
       <div className='pagination-wrapper'>
         <div>{selectJSX()}</div>
-        <div>{`Page ${currentPage} of total ${pageNumber}`}</div>
+        <div className='right-panel'>
+          <PaginationPanel
+            {...{
+              currentPage,
+              paginationLimit,
+              totalAvailable,
+            }}
+          />
+          <div>{`Page ${currentPage} / ${pageNumber}`}</div>
+        </div>
       </div>
     </>
   );

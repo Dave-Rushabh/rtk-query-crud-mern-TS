@@ -10,3 +10,25 @@
   margin-top: 24px !important;
   border-radius: 15px;
 }
+
+.right-panel {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+}
+
+.btn {
+  background-color: teal;
+  color: white;
+  height: 35px;
+  vertical-align: middle;
+  width: 35px;
+  font-size: large;
+  border: none;
+  border-radius: 4px;
+}
